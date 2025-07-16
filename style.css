@@ -81,11 +81,6 @@ body {
   }
 }
 
-.heart.fade-in {
-  animation: heartFadeIn 0.8s ease forwards;
-}
-
-
 @keyframes floatUp {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
@@ -93,11 +88,11 @@ body {
 
 /* Pop animation */
 .heart.pop {
-  animation: popScale 0.2s forwards;
+  animation: popScale 0.1s;
 }
 
 @keyframes popScale {
-  0% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(1.5); opacity: 1; }
   50% { transform: scale(1.4); opacity: 0.8; }
   100% { transform: scale(0); opacity: 0; }
 }
