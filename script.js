@@ -7,7 +7,7 @@ const secretModal = document.getElementById("secret-modal");
 const secretClose = document.getElementById("secret-close");
 
 let gameOver = false;
-const minHearts = 7;
+const minHearts = 1;
 let heartSpawnerInterval;
 
 // Load sound effects
@@ -22,22 +22,31 @@ function spawnHeart() {
 
   const heart = document.createElement("img");
   heart.src = "https://img.icons8.com/emoji/48/heart-suit.png";
-  heart.className = "heart fade-in"; // Add fade-in class here
+  heart.className = "heart fade-in";
+
+  // Random position
   heart.style.left = `${Math.random() * 85 + 5}%`;
   heart.style.top = `${Math.random() * 70 + 10}%`;
 
+  // Independent float
+  const duration = (3 + Math.random() * 2).toFixed(2); // 3–5s
+  const delay = (Math.random() * 1.5).toFixed(2); // 0–1.5s
+  heart.style.animationDuration = `${duration}s`;
+  heart.style.animationDelay = `${delay}s`;
+
+  // Slight rotation for variety
+  const rotation = (Math.random() * 30 - 15).toFixed(1);
+  heart.style.transform = `rotate(${rotation}deg)`;
+
+  // On click: pop and remove
   heart.onclick = () => {
     if (heart.classList.contains("pop")) return;
     heart.classList.add("pop");
 
-    // Play pop sound (optional)
-    popSound.currentTime = 0;
-    popSound.play();
-
     setTimeout(() => {
       heart.remove();
       checkIfCleared();
-    }, 200);
+    }, 200); // Give time for pop animation
   };
 
   heartsContainer.appendChild(heart);
