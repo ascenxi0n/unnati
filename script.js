@@ -7,7 +7,7 @@ const secretModal = document.getElementById("secret-modal");
 const secretClose = document.getElementById("secret-close");
 
 let gameOver = false;
-const minHearts = 1;
+const minHearts = 8;
 let heartSpawnerInterval;
 
 // Load sound effects
