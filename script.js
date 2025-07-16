@@ -2,27 +2,42 @@ const heartsContainer = document.getElementById("hearts");
 const gameScreen = document.getElementById("game-screen");
 const message = document.getElementById("message");
 const confettiCanvas = document.getElementById("confetti-canvas");
+const secretIcon = document.getElementById("secret-icon");
+const secretModal = document.getElementById("secret-modal");
+const secretClose = document.getElementById("secret-close");
 
 let gameOver = false;
-const minHearts = 6;
+const minHearts = 7;
 let heartSpawnerInterval;
+
+// Load sound effects
+const popSound = new Audio('https://freesound.org/data/previews/522/522859_4609599-lq.mp3');
+popSound.volume = 0.15;
+
+const chimeSound = new Audio('https://freesound.org/data/previews/341/341695_3248244-lq.mp3');
+chimeSound.volume = 0.18;
 
 function spawnHeart() {
   if (gameOver) return;
 
   const heart = document.createElement("img");
   heart.src = "https://img.icons8.com/emoji/48/heart-suit.png";
-  heart.className = "heart";
+  heart.className = "heart fade-in"; // Add fade-in class here
   heart.style.left = `${Math.random() * 85 + 5}%`;
   heart.style.top = `${Math.random() * 70 + 10}%`;
 
   heart.onclick = () => {
     if (heart.classList.contains("pop")) return;
     heart.classList.add("pop");
+
+    // Play pop sound (optional)
+    popSound.currentTime = 0;
+    popSound.play();
+
     setTimeout(() => {
       heart.remove();
       checkIfCleared();
-    }, 100);
+    }, 200);
   };
 
   heartsContainer.appendChild(heart);
@@ -105,6 +120,48 @@ function startConfetti() {
   setTimeout(() => {
     confettiCanvas.classList.remove("active");
   }, 50000);
+}
+
+// --- Secret message modal logic ---
+
+// Open modal
+secretIcon.addEventListener("click", () => {
+  secretModal.classList.add("show");
+  secretModal.setAttribute("aria-hidden", "false");
+  secretModal.focus();
+
+  popSound.currentTime = 0;
+  popSound.play();
+});
+
+// Close modal
+secretClose.addEventListener("click", closeSecretModal);
+
+// Close modal with Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && secretModal.classList.contains("show")) {
+    closeSecretModal();
+  }
+});
+
+function closeSecretModal() {
+  // Add closing class to trigger fade out
+  secretModal.classList.add("closing");
+
+  // Play pop sound for closing modal
+  popSound.currentTime = 0;
+  popSound.play();
+
+  // After animation duration, remove show and closing classes
+  setTimeout(() => {
+    secretModal.classList.remove("show", "closing");
+    secretModal.setAttribute("aria-hidden", "true");
+    secretIcon.focus();
+
+    // Play chime sound on wish page after modal fully closes
+    chimeSound.currentTime = 0;
+    chimeSound.play();
+  }, 350);
 }
 
 // Start the heart tapping game
