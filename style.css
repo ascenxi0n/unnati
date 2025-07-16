@@ -63,7 +63,7 @@ body {
   user-select: none;
   transition: transform 0.4s ease;
   will-change: transform;
-  animation: floatUp 6s ease-in-out infinite;
+  animation: floatUp 4s ease-in-out infinite;
   filter: drop-shadow(0 2px 2px rgba(255 192 203 / 0.6));
   backface-visibility: hidden;
   touch-action: manipulation;
@@ -82,8 +82,9 @@ body {
 }
 
 .heart.fade-in {
-  animation: heartFadeIn 5s ease forwards;
+  animation: heartFadeIn 0.8s ease forwards;
 }
+
 
 @keyframes floatUp {
   0%, 100% { transform: translateY(0); }
@@ -92,7 +93,7 @@ body {
 
 /* Pop animation */
 .heart.pop {
-  animation: popScale 0.3s forwards;
+  animation: popScale 0.2s forwards;
 }
 
 @keyframes popScale {
@@ -153,6 +154,95 @@ body {
   filter: drop-shadow(0 2px 6px rgba(255 182 193 / 0.7));
   display: block;
   margin: 0 auto;
+  margin-bottom: 12px;
+}
+
+/* Secret message icon pulse */
+#secret-icon {
+  font-size: 2.5rem;
+  color: #ffadc6;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+  animation: pulse 2.5s infinite ease-in-out;
+  filter: drop-shadow(0 0 5px #ffadc6);
+  margin: 0 auto;
+  width: fit-content;
+  user-select: none;
+}
+
+#secret-icon:hover,
+#secret-icon:focus {
+  color: #ff6f91;
+  filter: drop-shadow(0 0 10px #ff6f91);
+  outline: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Secret message modal */
+#secret-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 400px;
+  width: 90vw;
+  background: #ffb8cf;
+  border-radius: 24px;
+  box-shadow: 0 0 25px rgba(255, 143, 199, 0.6);
+  padding: 30px 25px 40px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  user-select: text;
+  transform: translate(-50%, -50%) translateY(-20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 60;
+  outline: none;
+}
+
+#secret-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+#secret-modal.closing {
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(-20px);
+}
+
+/* Close button on modal */
+#secret-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+#secret-close:hover,
+#secret-close:focus {
+  color: #ff1f70;
+  outline: none;
 }
 
 /* Confetti canvas - full screen and hidden by default */
@@ -171,6 +261,3 @@ body {
 #confetti-canvas.active {
   opacity: 1;
 }
-
-/* New fade-in animation for hearts */
-
