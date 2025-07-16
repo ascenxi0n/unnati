@@ -25,7 +25,18 @@
       alt="Hello Kitty waving"
       draggable="false"
     />
+    <!-- Secret message icon -->
+    <div id="secret-icon" role="button" tabindex="0" aria-label="Open secret message" title="Open secret message">💌</div>
   </section>
+
+  <!-- Secret message modal -->
+  <div id="secret-modal" class="hidden" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <button id="secret-close" aria-label="Close secret message">×</button>
+    <p>Unnati,<br><br>
+You're so incredibly cute and lovely—inside and out.<br><br>
+You deserve all the love, happiness, and magic that life can bring. 💖✨<br>
+</p>
+  </div>
 
   <canvas id="confetti-canvas"></canvas>
 
