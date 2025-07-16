@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Unnati!</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Game screen -->
+  <div id="game-screen">
+    <h2>pop all the hearts! >.<</h2>
+    <div id="hearts"></div>
+  </div>
+
+  <!-- Wish screen, hidden initially -->
+  <section id="message" aria-hidden="true" tabindex="-1" class="hidden">
+    <h1>happy birthday unnati! 💗</h1>
+    <img
+      src="https://media.tenor.com/LR0dQvR_0-oAAAAj/hello-kitty-pixel-art.gif"
+      alt="Hello Kitty waving"
+      draggable="false"
+    />
+  </section>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
